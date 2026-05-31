@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche Véhicule — Export Car 213</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--red:#C0392B;--red-dk:#a12e22;--green:#27AE60;--green-dk:#1e9450;--black:#1A1A1A;--white:#fff;--off-white:#F5F5F5;--gray:#8A8A8A;--gray-lt:#E8E8E8;--nav-h:72px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7;color:var(--black);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;font-family:inherit;border:none;background:none}
+    .container{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+    .bc{font-family:'Barlow Condensed',sans-serif}
+
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;border-radius:3px;transition:background .25s;cursor:pointer}
+    .btn-primary:hover{background:var(--red-dk)}
+    .btn-green{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;border-radius:3px;transition:background .25s;cursor:pointer;border:none;width:100%;justify-content:center}
+    .btn-green:hover{background:var(--green-dk)}
+    .btn-outline-dark{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;border:2px solid var(--black);border-radius:3px;transition:background .25s,color .25s;width:100%;cursor:pointer;border-width:1px}
+    .btn-outline-dark:hover{background:var(--black);color:#fff}
+
+    /* NAV */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .nav-logo img{height:56px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--black);position:relative;transition:color .2s}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--green);transition:width .25s}
+    .nav-links a:hover{color:var(--green)}
+    .nav-links a:hover::after{width:100%}
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-burger{display:none;flex-direction:column;gap:5px;padding:8px}
+    .nav-burger span{display:block;width:24px;height:2px;background:var(--black);border-radius:2px;transition:transform .3s,opacity .3s}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-burger.open span:nth-child(2){opacity:0}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-mobile{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:#fff;z-index:999;flex-direction:column;padding:32px 24px;gap:4px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+    .nav-mobile.open{display:flex;transform:translateX(0)}
+    .nav-mobile a{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;text-transform:uppercase;color:var(--black);padding:14px 0;border-bottom:1px solid var(--gray-lt);transition:color .2s}
+    .nav-mobile a:hover{color:var(--green)}
+
+    /* PAGE */
+    .page-wrap{padding-top:calc(var(--nav-h) + 32px);padding-bottom:96px}
+    .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);margin-bottom:32px}
+    .breadcrumb a{color:var(--gray);transition:color .2s}
+    .breadcrumb a:hover{color:var(--black)}
+
+    /* VEHICLE LAYOUT */
+    .vehicle-layout{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start}
+
+    /* GALLERY */
+    .gallery-main{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--off-white);margin-bottom:12px;cursor:zoom-in}
+    .gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .gallery-main:hover img{transform:scale(1.02)}
+    .gallery-badge{position:absolute;top:16px;left:16px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+    .badge-neuf{background:var(--black);color:#fff}
+    .badge-nouveau{background:var(--red);color:#fff}
+    .badge-occasion{background:#6B6B6B;color:#fff}
+
+    .gallery-thumbs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+    .gallery-thumbs::-webkit-scrollbar{display:none}
+    .gallery-thumb{flex-shrink:0;width:80px;height:60px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+    .gallery-thumb.active{border-color:var(--black)}
+    .gallery-thumb img{width:100%;height:100%;object-fit:cover}
+
+    /* SPECS TABS */
+    .spec-tabs{display:flex;border-bottom:1px solid var(--gray-lt);margin:32px 0 24px}
+    .spec-tab{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:10px 20px;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:color .2s,border-color .2s}
+    .spec-tab.active{color:var(--black);border-bottom-color:var(--black)}
+    .spec-panel{display:none}
+    .spec-panel.active{display:block}
+
+    .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gray-lt)}
+    .spec-row{display:contents}
+    .spec-key{padding:12px 16px;font-size:14px;color:var(--gray);border-bottom:1px solid var(--gray-lt);border-right:1px solid var(--gray-lt);background:var(--off-white)}
+    .spec-val{padding:12px 16px;font-size:14px;font-weight:500;color:var(--black);border-bottom:1px solid var(--gray-lt)}
+    .spec-key:nth-last-child(2),.spec-val:last-child{border-bottom:none}
+
+    .equip-list{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;padding:8px 0}
+    .equip-item{display:flex;align-items:center;gap:8px;font-size:14px;color:#444}
+    .equip-item svg{color:var(--green);flex-shrink:0}
+
+    .export-info{background:var(--off-white);padding:24px;margin-top:8px}
+    .export-info h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+    .export-item{display:flex;align-items:center;gap:10px;font-size:14px;color:#444;padding:6px 0;border-bottom:1px solid var(--gray-lt)}
+    .export-item:last-child{border-bottom:none}
+    .export-item svg{color:var(--green);flex-shrink:0}
+
+    /* SIDEBAR */
+    .vehicle-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}
+    .sidebar-card{background:var(--off-white);padding:28px;margin-bottom:16px}
+    .sidebar-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+    .sidebar-brand{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+    .sidebar-name{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:16px;color:var(--black)}
+    .sidebar-specs{display:flex;gap:20px;margin-bottom:20px;flex-wrap:wrap}
+    .sidebar-spec{text-align:center}
+    .sidebar-spec-val{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--black)}
+    .sidebar-spec-key{font-size:11px;color:var(--gray);letter-spacing:.05em}
+    .price-block{border-top:1px solid var(--gray-lt);padding-top:20px;margin-top:4px}
+    .price-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
+    .price-value{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:900;color:var(--green);line-height:1;letter-spacing:-.02em}
+    .price-note{font-size:13px;color:var(--gray);margin-top:4px}
+    .cta-stack{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+    .wa-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:3px;transition:background .25s;cursor:pointer}
+    .wa-cta:hover{background:#1fa854}
+    .sidebar-trust{background:var(--white);border:1px solid var(--gray-lt);padding:20px}
+    .trust-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-lt)}
+    .trust-item:last-child{border-bottom:none}
+    .trust-icon{color:var(--green);flex-shrink:0;margin-top:2px}
+    .trust-text strong{display:block;font-size:14px;font-weight:600;color:var(--black)}
+    .trust-text span{font-size:13px;color:var(--gray)}
+
+    /* RELATED */
+    .related-section{margin-top:72px;padding-top:56px;border-top:1px solid var(--gray-lt)}
+    .related-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:900;text-transform:uppercase;margin-bottom:32px}
+    .related-title em{font-style:italic;color:var(--red)}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-lt);border:1px solid var(--gray-lt)}
+    .related-card{background:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s,border-top .15s;border-top:3px solid transparent}
+    .related-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);z-index:1;border-top-color:var(--green)}
+    .related-card-img{aspect-ratio:4/3;overflow:hidden;background:var(--off-white)}
+    .related-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .related-card:hover .related-card-img img{transform:scale(1.04)}
+    .related-card-body{padding:16px 18px 18px}
+    .related-brand{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
+    .related-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;color:var(--black);margin-bottom:8px}
+    .related-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green)}
+
+    /* FOOTER */
+    #footer{background:var(--black);color:#fff;padding:72px 0 40px}
+    .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .footer-logo img{height:52px;width:auto;filter:brightness(0) invert(1);margin-bottom:20px}
+    .footer-tagline{font-size:16px;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:24px}
+    .footer-social{display:flex;gap:12px}
+    .social-btn{width:36px;height:36px;border-radius:3px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:border-color .2s,color .2s}
+    .social-btn:hover{border-color:#fff;color:#fff}
+    .footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .footer-links a{font-size:16px;color:rgba(255,255,255,.6);transition:color .2s}
+    .footer-links a:hover{color:#fff}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:16px;color:rgba(255,255,255,.6)}
+    .footer-contact-item svg{flex-shrink:0;margin-top:2px;color:var(--red)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;gap:16px;flex-wrap:wrap}
+    .footer-copy{font-size:15px;color:rgba(255,255,255,.3)}
+    .footer-legal{display:flex;gap:24px}
+    .footer-legal a{font-size:15px;color:rgba(255,255,255,.3);transition:color .2s}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:waPulse 3s ease-in-out infinite;transition:transform .2s}
+    .wa-float:hover{transform:scale(1.1);animation-play-state:paused}
+    .wa-float svg{color:#fff}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}}
+
+    @media(max-width:1024px){.vehicle-layout{grid-template-columns:1fr}.vehicle-sidebar{position:static}.related-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr 1fr;gap:40px}}
+    @media(max-width:768px){:root{--nav-h:60px}.nav-links,.nav-right .btn-primary{display:none}.nav-burger{display:flex}.equip-list{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;gap:32px}}
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></a>
+    <ul class="nav-links">
+      <li><a href="inventaire.html?type=neuf">Véhicules Neufs</a></li>
+      <li><a href="inventaire.html?type=occasion">Véhicules Occasion</a></li>
+      <li><a href="a-propos.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Nous Contacter</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-primary">Nous contacter</a>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="inventaire.html?type=neuf">Véhicules Neufs</a>
+  <a href="inventaire.html?type=occasion">Véhicules Occasion</a>
+  <a href="a-propos.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Nous Contacter</a>
+  <a href="contact.html" class="btn-primary" style="margin-top:12px">Prendre RDV</a>
+</div>
+
+<div class="page-wrap">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a><span>›</span>
+      <a href="inventaire.html">Véhicules</a><span>›</span>
+      <span id="breadcrumbName">Chargement…</span>
+    </div>
+
+    <div class="vehicle-layout">
+
+      <!-- GALLERY + SPECS -->
+      <div>
+        <div class="gallery-main" id="galleryMain">
+          <img id="mainImg" src="asstes/3.png" alt="Véhicule">
+          <span class="gallery-badge badge-neuf" id="mainBadge">Neuf</span>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+
+        <!-- SPEC TABS -->
+        <div class="spec-tabs">
+          <button class="spec-tab active" data-tab="specs">Caractéristiques</button>
+          <button class="spec-tab" data-tab="equipments">Équipements</button>
+          <button class="spec-tab" data-tab="export">Infos export</button>
+        </div>
+
+        <div class="spec-panel active" id="tab-specs">
+          <div class="spec-grid">
+            <span class="spec-key">Marque</span><span class="spec-val" id="s-brand">—</span>
+            <span class="spec-key">Modèle</span><span class="spec-val" id="s-model">—</span>
+            <span class="spec-key">Année</span><span class="spec-val" id="s-year">—</span>
+            <span class="spec-key">Kilométrage</span><span class="spec-val" id="s-km">—</span>
+            <span class="spec-key">Carburant</span><span class="spec-val" id="s-fuel">—</span>
+            <span class="spec-key">Transmission</span><span class="spec-val" id="s-gearbox">—</span>
+            <span class="spec-key">Motorisation</span><span class="spec-val" id="s-engine">—</span>
+            <span class="spec-key">Puissance</span><span class="spec-val" id="s-power">—</span>
+            <span class="spec-key">Couleur</span><span class="spec-val" id="s-color">—</span>
+            <span class="spec-key">Portes</span><span class="spec-val" id="s-doors">—</span>
+          </div>
+        </div>
+
+        <div class="spec-panel" id="tab-equipments">
+          <div class="equip-list" id="equipList"></div>
+        </div>
+
+        <div class="spec-panel" id="tab-export">
+          <div class="export-info">
+            <h4>Informations export</h4>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Disponible pour export Algérie & Tunisie</div>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Documents acceptés : CCR / Passeport / FCR</div>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Accompagnement douane inclus</div>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Délai d'exportation : 4 à 8 semaines</div>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Transport maritime depuis port de Marseille ou Le Havre</div>
+            <div class="export-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Garantie constructeur transférable selon conditions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="vehicle-sidebar">
+        <div class="sidebar-card">
+          <p class="sidebar-brand" id="sb-brand">Cupra</p>
+          <h1 class="sidebar-name bc" id="sb-name">Formentor</h1>
+          <div class="sidebar-specs">
+            <div class="sidebar-spec"><div class="sidebar-spec-val" id="sb-year">2025</div><div class="sidebar-spec-key">Année</div></div>
+            <div class="sidebar-spec"><div class="sidebar-spec-val" id="sb-km">0 km</div><div class="sidebar-spec-key">Kilométrage</div></div>
+            <div class="sidebar-spec"><div class="sidebar-spec-val" id="sb-fuel">Essence</div><div class="sidebar-spec-key">Énergie</div></div>
+          </div>
+          <div class="price-block">
+            <p class="price-label">Prix export HT</p>
+            <p class="price-value" id="sb-price">29 500 €</p>
+            <p class="price-note">Prix indicatif — hors frais de port et taxes douanières</p>
+          </div>
+          <div class="cta-stack">
+            <a href="https://wa.me/33670512030?text=Bonjour%2C%20je%20suis%20intéressé%20par%20ce%20véhicule%20sur%20votre%20site." class="wa-cta" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Demander sur WhatsApp
+            </a>
+            <a href="contact.html" class="btn-outline-dark">Envoyer une demande</a>
+          </div>
+        </div>
+
+        <div class="sidebar-trust">
+          <div class="trust-item">
+            <svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="trust-text"><strong>Stock vérifié</strong><span>Véhicule disponible immédiatement</span></div>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="trust-text"><strong>Accompagnement complet</strong><span>De l'achat à la livraison au port</span></div>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <div class="trust-text"><strong>Paiement sécurisé</strong><span>Virement bancaire ou financement</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- RELATED VEHICLES -->
+    <div class="related-section">
+      <h2 class="related-title bc">Véhicules <em>similaires</em></h2>
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></div>
+        <p class="footer-tagline">Spécialiste de l'export automobile vers l'Algérie et la Tunisie. Simple, transparent, efficace.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        </div>
+      </div>
+      <div><p class="footer-col-title">Navigation</p><ul class="footer-links"><li><a href="inventaire.html?type=neuf">Véhicules neufs</a></li><li><a href="inventaire.html?type=occasion">Véhicules d'occasion</a></li><li><a href="a-propos.html">Nos concessions</a></li><li><a href="contact.html">Nous contacter</a></li></ul></div>
+      <div><p class="footer-col-title">Ressources</p><ul class="footer-links"><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html#documents">Documents requis</a></li><li><a href="faq.html#douane">Douane & taxes</a></li></ul></div>
+      <div>
+        <p class="footer-col-title">Contact</p>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>45 av. Georges Clemenceau, 92000 Nanterre</span></div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>06 70 51 20 30</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Export Car 213. Tous droits réservés.</p>
+      <div class="footer-legal"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/33670512030" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');mm.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open');document.body.style.overflow=''}));
+
+  // Vehicle data
+  const vehicles={
+    1:{id:1,imgs:['3.png','40.png','5.png','6.png'],brand:'Cupra',name:'Formentor',year:2025,km:0,fuel:'Essence',gearbox:'DSG7 Automatique',engine:'1.5 TSI 150ch',power:'150 ch',color:'Blanc Nevada',doors:'5 portes',price:29500,type:'neuf',badge:'neuf',
+      equipments:['Écran tactile 12"','Navigation GPS','Caméra de recul','Capteurs de stationnement','Sièges sport','Climatisation auto','Keyless Entry','Jantes 18"','LED Matrix','CUPRA Connect'],
+    },
+    2:{id:2,imgs:['20.png','36.png','14.png'],brand:'Volkswagen',name:'Tiguan 7 Places',year:2025,km:29000,fuel:'Essence',gearbox:'DSG7 Automatique',engine:'1.5 TSI 150ch',power:'150 ch',color:'Gris Acier',doors:'5 portes',price:27900,type:'occasion',badge:'occasion',
+      equipments:['7 places modulables','Toit panoramique','CarPlay / Android Auto','Régulateur adaptatif','Sièges chauffants','LED IQ.Light','Aide au stationnement','Attelage préparé'],
+    },
+    3:{id:3,imgs:['35.png','36.png','9.png'],brand:'Volkswagen',name:'T-Roc R-Line',year:2025,km:0,fuel:'Essence',gearbox:'DSG7 Automatique',engine:'1.5 TSI 150ch',power:'150 ch',color:'Noir Profond',doors:'5 portes',price:25900,type:'neuf',badge:'nouveau',
+      equipments:['Pack R-Line extérieur','Jantes 19" Belmont','Virtual Cockpit','Éclairage ambiance','Sièges sport R-Line','App-Connect','Feux LED','Climatisation Climatronic'],
+    },
+  };
+
+  const params=new URLSearchParams(location.search);
+  const id=parseInt(params.get('id'))||1;
+  const v=vehicles[id]||vehicles[1];
+
+  // Populate
+  document.getElementById('breadcrumbName').textContent=`${v.brand} ${v.name}`;
+  document.getElementById('mainBadge').textContent={neuf:'Neuf',nouveau:'Nouveauté',occasion:'Occasion'}[v.badge];
+  document.getElementById('mainBadge').className=`gallery-badge badge-${v.badge}`;
+  document.getElementById('sb-brand').textContent=v.brand;
+  document.getElementById('sb-name').textContent=v.name;
+  document.getElementById('sb-year').textContent=v.year;
+  document.getElementById('sb-km').textContent=v.km===0?'0 km':v.km.toLocaleString('fr-FR')+' km';
+  document.getElementById('sb-fuel').textContent=v.fuel;
+  document.getElementById('sb-price').textContent=v.price.toLocaleString('fr-FR')+' €';
+  ['brand','model','year','km','fuel','gearbox','engine','power','color','doors'].forEach(k=>{
+    const el=document.getElementById('s-'+k);
+    if(el) el.textContent=k==='brand'?v.brand:k==='model'?v.name:k==='km'?(v.km===0?'0 km':v.km.toLocaleString('fr-FR')+' km'):v[k]||'—';
+  });
+
+  // Gallery
+  const mainImg=document.getElementById('mainImg');
+  const thumbsEl=document.getElementById('galleryThumbs');
+  v.imgs.forEach((src,i)=>{
+    const t=document.createElement('div');
+    t.className='gallery-thumb'+(i===0?' active':'');
+    t.innerHTML=`<img src="asstes/${src}" alt="${v.brand} ${v.name}" loading="lazy">`;
+    t.addEventListener('click',()=>{
+      mainImg.src=`asstes/${src}`;
+      document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+    });
+    thumbsEl.appendChild(t);
+  });
+
+  // Equipments
+  const equipEl=document.getElementById('equipList');
+  v.equipments.forEach(e=>{
+    equipEl.innerHTML+=`<div class="equip-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${e}</div>`;
+  });
+
+  // Spec tabs
+  document.querySelectorAll('.spec-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.spec-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.spec-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Related
+  const relGrid=document.getElementById('relatedGrid');
+  Object.values(vehicles).filter(x=>x.id!==v.id).slice(0,3).forEach(r=>{
+    const card=document.createElement('div');
+    card.className='related-card';
+    card.innerHTML=`<div class="related-card-img"><img src="asstes/${r.imgs[0]}" alt="${r.brand} ${r.name}" loading="lazy"></div><div class="related-card-body"><p class="related-brand">${r.brand}</p><h3 class="related-name bc">${r.name}</h3><p class="related-price">${r.price.toLocaleString('fr-FR')} €</p></div>`;
+    card.addEventListener('click',()=>location.href=`vehicule.html?id=${r.id}`);
+    relGrid.appendChild(card);
+  });
+</script>
+</body>
+</html>

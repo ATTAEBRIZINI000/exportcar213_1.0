@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FAQ Export Car 213 — Procédures d'import, documents CCR/Passeport/FCR, douane, taxes, financement. Tout ce que vous devez savoir pour exporter votre véhicule vers l'Algérie ou la Tunisie.">
+  <title>FAQ — Export Car 213</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--red:#C0392B;--red-dk:#a12e22;--green:#27AE60;--green-dk:#1e9450;--black:#1A1A1A;--white:#fff;--off-white:#F5F5F5;--gray:#8A8A8A;--gray-lt:#E8E8E8;--nav-h:72px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7;color:var(--black);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{cursor:pointer;font-family:inherit;border:none;background:none}
+    .container{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+    .bc{font-family:'Barlow Condensed',sans-serif}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;border-radius:3px;transition:background .25s}
+    .btn-primary:hover{background:var(--red-dk)}
+
+    /* NAV */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .nav-logo img{height:56px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--black);position:relative;transition:color .2s}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--green);transition:width .25s}
+    .nav-links a:hover{color:var(--green)} .nav-links a:hover::after{width:100%}
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-burger{display:none;flex-direction:column;gap:5px;padding:8px}
+    .nav-burger span{display:block;width:24px;height:2px;background:var(--black);border-radius:2px;transition:transform .3s,opacity .3s}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-burger.open span:nth-child(2){opacity:0}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-mobile{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:#fff;z-index:999;flex-direction:column;padding:32px 24px;gap:4px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+    .nav-mobile.open{display:flex;transform:translateX(0)}
+    .nav-mobile a{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;text-transform:uppercase;color:var(--black);padding:14px 0;border-bottom:1px solid var(--gray-lt);transition:color .2s}
+    .nav-mobile a:hover{color:var(--green)}
+
+    /* PAGE HEADER */
+    .page-header{padding-top:calc(var(--nav-h)+56px);padding-bottom:56px;background:var(--off-white);border-bottom:1px solid var(--gray-lt)}
+    .label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.01em;margin-bottom:16px}
+    .page-title em{font-style:italic;color:var(--red)}
+    .faq-search{display:flex;gap:0;max-width:520px;margin-top:24px}
+    .faq-search input{flex:1;border:2px solid var(--black);padding:13px 18px;font-family:'Inter',sans-serif;font-size:15px;outline:none;transition:border-color .2s}
+    .faq-search input:focus{border-color:var(--green)}
+    .faq-search button{background:var(--black);color:#fff;padding:13px 24px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+    .faq-search button:hover{background:var(--red)}
+
+    /* FAQ LAYOUT */
+    .faq-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:64px 0 96px;align-items:start}
+
+    /* CATEGORY NAV */
+    .faq-cats{position:sticky;top:calc(var(--nav-h)+24px)}
+    .faq-cat-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+    .faq-cat-link{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--gray);padding:10px 0;border-bottom:1px solid var(--gray-lt);cursor:pointer;transition:color .2s}
+    .faq-cat-link:hover,.faq-cat-link.active{color:var(--black)}
+    .faq-cat-link.active{font-weight:600}
+    .faq-cat-link .cat-dot{width:6px;height:6px;border-radius:50%;background:var(--gray-lt);flex-shrink:0;transition:background .2s}
+    .faq-cat-link.active .cat-dot{background:var(--green)}
+
+    /* FAQ CONTENT */
+    .faq-section{margin-bottom:56px;scroll-margin-top:calc(var(--nav-h)+32px)}
+    .faq-section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:900;text-transform:uppercase;letter-spacing:.01em;color:var(--black);margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--black)}
+    .faq-item{border-bottom:1px solid var(--gray-lt)}
+    .faq-question{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;cursor:pointer;font-size:16px;font-weight:600;color:var(--black);transition:color .2s;-webkit-tap-highlight-color:transparent}
+    .faq-question:hover{color:var(--green)}
+    .faq-question svg{flex-shrink:0;transition:transform .3s;color:var(--gray)}
+    .faq-item.open .faq-question svg{transform:rotate(45deg);color:var(--green)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+    .faq-answer-inner{padding:0 0 20px;font-size:16px;color:#444;line-height:1.75}
+    .faq-answer-inner p{margin-bottom:12px}
+    .faq-answer-inner p:last-child{margin-bottom:0}
+    .faq-answer-inner ul{padding-left:20px;margin:8px 0 12px}
+    .faq-answer-inner li{margin-bottom:6px}
+    .faq-answer-inner strong{color:var(--black)}
+    .faq-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;background:var(--off-white);color:var(--gray);border-radius:2px;margin-bottom:8px}
+
+    /* CTA BANNER */
+    .faq-cta{background:var(--black);color:#fff;padding:48px;margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .faq-cta-text strong{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;display:block;margin-bottom:6px}
+    .faq-cta-text span{font-size:15px;color:rgba(255,255,255,.65)}
+    .faq-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 24px;border-radius:3px;transition:background .25s}
+    .btn-wa:hover{background:#1fa854}
+    .btn-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border:2px solid rgba(255,255,255,.35);border-radius:3px;transition:border-color .25s}
+    .btn-white:hover{border-color:#fff}
+
+    /* FOOTER */
+    #footer{background:var(--black);color:#fff;padding:72px 0 40px}
+    .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .footer-logo img{height:52px;filter:brightness(0) invert(1);margin-bottom:20px}
+    .footer-tagline{font-size:16px;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:24px}
+    .footer-social{display:flex;gap:12px}
+    .social-btn{width:36px;height:36px;border-radius:3px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:border-color .2s,color .2s}
+    .social-btn:hover{border-color:#fff;color:#fff}
+    .footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .footer-links a{font-size:16px;color:rgba(255,255,255,.6);transition:color .2s}
+    .footer-links a:hover{color:#fff}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:16px;color:rgba(255,255,255,.6)}
+    .footer-contact-item svg{flex-shrink:0;margin-top:2px;color:var(--red)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;gap:16px;flex-wrap:wrap}
+    .footer-copy{font-size:15px;color:rgba(255,255,255,.3)}
+    .footer-legal{display:flex;gap:24px}
+    .footer-legal a{font-size:15px;color:rgba(255,255,255,.3);transition:color .2s}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:waPulse 3s ease-in-out infinite;transition:transform .2s}
+    .wa-float:hover{transform:scale(1.1);animation-play-state:paused} .wa-float svg{color:#fff}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}}
+
+    @media(max-width:1024px){.faq-layout{grid-template-columns:200px 1fr}.footer-top{grid-template-columns:1fr 1fr;gap:40px}}
+    @media(max-width:768px){:root{--nav-h:60px}.nav-links,.nav-right .btn-primary{display:none}.nav-burger{display:flex}.faq-layout{grid-template-columns:1fr}.faq-cats{position:static;display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;flex-wrap:nowrap}.faq-cat-title{display:none}.faq-cat-link{border:1px solid var(--gray-lt);padding:8px 14px;white-space:nowrap;border-bottom-width:1px}.footer-top{grid-template-columns:1fr;gap:32px}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></a>
+    <ul class="nav-links">
+      <li><a href="inventaire.html?type=neuf">Véhicules Neufs</a></li>
+      <li><a href="inventaire.html?type=occasion">Véhicules Occasion</a></li>
+      <li><a href="a-propos.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Nous Contacter</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-primary">Nous contacter</a>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="inventaire.html?type=neuf">Véhicules Neufs</a>
+  <a href="inventaire.html?type=occasion">Véhicules Occasion</a>
+  <a href="a-propos.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Nous Contacter</a>
+  <a href="contact.html" class="btn-primary" style="margin-top:12px">Prendre RDV</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <p class="label">Centre d'aide</p>
+    <h1 class="page-title bc">Questions <em>fréquentes</em></h1>
+    <p style="font-size:17px;color:#555;max-width:520px">Tout ce que vous devez savoir sur l'export automobile vers l'Algérie et la Tunisie.</p>
+    <div class="faq-search">
+      <input type="text" id="searchInput" placeholder="Rechercher une question…">
+      <button onclick="searchFaq()">Rechercher</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="faq-layout">
+
+    <!-- CATEGORY NAV -->
+    <nav class="faq-cats" aria-label="Catégories FAQ">
+      <p class="faq-cat-title">Catégories</p>
+      <div class="faq-cat-link active" onclick="scrollTo('documents')"><span class="cat-dot"></span>Documents requis</div>
+      <div class="faq-cat-link" onclick="scrollTo('procedure')"><span class="cat-dot"></span>Procédure d'import</div>
+      <div class="faq-cat-link" onclick="scrollTo('douane')"><span class="cat-dot"></span>Douane & taxes</div>
+      <div class="faq-cat-link" onclick="scrollTo('financement')"><span class="cat-dot"></span>Financement</div>
+      <div class="faq-cat-link" onclick="scrollTo('livraison')"><span class="cat-dot"></span>Délais & livraison</div>
+      <div class="faq-cat-link" onclick="scrollTo('vehicules')"><span class="cat-dot"></span>Choix du véhicule</div>
+    </nav>
+
+    <!-- FAQ CONTENT -->
+    <div>
+
+      <!-- DOCUMENTS -->
+      <section class="faq-section" id="documents">
+        <h2 class="faq-section-title bc">Documents requis</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Quels documents faut-il pour exporter une voiture vers l'Algérie ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <span class="faq-tag">Algérie</span>
+            <p>Pour exporter un véhicule vers l'Algérie, il vous faut l'un des trois titres suivants :</p>
+            <ul>
+              <li><strong>CCR (Certificat de Changement de Résidence)</strong> — délivré par le consulat algérien en France pour les ressortissants qui reviennent définitivement en Algérie.</li>
+              <li><strong>Passeport biométrique algérien</strong> — pour les binationaux franco-algériens résidant en France. Le véhicule doit avoir moins de 3 ans et moins de 60 000 km.</li>
+              <li><strong>FCR (Franchise de Cotisation de Retraite)</strong> — pour les retraités algériens en France.</li>
+            </ul>
+            <p>En plus du titre d'exportation, vous aurez besoin de : carte grise française, carte d'identité ou passeport, justificatif de résidence en France.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Quelle est la différence entre CCR, Passeport et FCR ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p><strong>CCR :</strong> Pour les Algériens qui transfèrent définitivement leur résidence en Algérie. Permet d'importer un véhicule de moins de 3 ans avec exonération totale des droits de douane. Valable une seule fois tous les 5 ans.</p>
+            <p><strong>Passeport biométrique :</strong> Pour les binationaux résidant légalement en France. Le véhicule doit avoir moins de 3 ans et 60 000 km maximum. Franchise réduite possible selon les cas.</p>
+            <p><strong>FCR :</strong> Pour les retraités algériens résidant en France. Conditions similaires au CCR mais réservé aux personnes à la retraite.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Quels documents pour exporter vers la Tunisie ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <span class="faq-tag">Tunisie</span>
+            <p>Pour la Tunisie, le dispositif d'importation pour les résidents à l'étranger (RNT) permet d'importer un véhicule avec une exonération douanière sous conditions :</p>
+            <ul>
+              <li>Résider légalement en France depuis au moins 6 mois</li>
+              <li>Véhicule de moins de 3 ans à la date d'importation</li>
+              <li>Ne pas avoir bénéficié du même avantage depuis 5 ans</li>
+              <li>Documents : carte de séjour française, passeport tunisien, titre de résidence</li>
+            </ul>
+            <p>Notre équipe vous accompagne dans toutes les démarches administratives tunisiennes.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Comment obtenir le CCR ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Le CCR s'obtient auprès du <strong>Consulat général d'Algérie</strong> dont vous dépendez en France (Paris, Lyon, Marseille, etc.).</p>
+            <p>Pièces à fournir généralement demandées :</p>
+            <ul>
+              <li>Formulaire de demande CCR rempli</li>
+              <li>Passeport algérien valide</li>
+              <li>Justificatif de résidence en France</li>
+              <li>Titre de séjour ou carte de résident</li>
+              <li>Justificatif de la mutation professionnelle (si applicable)</li>
+            </ul>
+            <p>Le délai de traitement varie entre 1 et 3 semaines selon le consulat. Nous vous conseillons d'engager la démarche avant de sélectionner votre véhicule.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- PROCÉDURE -->
+      <section class="faq-section" id="procedure">
+        <h2 class="faq-section-title bc">Procédure d'import</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Comment se déroule l'achat et l'export en pratique ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Le processus complet se déroule en 5 étapes :</p>
+            <ul>
+              <li><strong>1. Sélection du véhicule</strong> — Choisissez votre véhicule dans notre inventaire ou contactez-nous pour une recherche personnalisée.</li>
+              <li><strong>2. Vérification des documents</strong> — Nous vérifions la validité de vos documents d'exportation (CCR, Passeport, FCR).</li>
+              <li><strong>3. Signature du bon de commande</strong> — Signature du contrat et versement de l'acompte (généralement 20-30%).</li>
+              <li><strong>4. Préparation export</strong> — Nous gérons les formalités douanières françaises, le certificat d'exportation et la mise en conformité.</li>
+              <li><strong>5. Embarquement et livraison</strong> — Le véhicule est chargé sur le navire depuis Marseille ou Le Havre. Livraison au port de destination.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Puis-je visiter le showroom avant d'acheter ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Absolument. Nous vous encourageons à venir visiter nos showrooms de <strong>Nanterre (92)</strong> ou de <strong>Caen (14)</strong>. Vous pourrez voir et inspecter les véhicules physiquement.</p>
+            <p>Pour les clients éloignés, nous proposons également des visites virtuelles par vidéo WhatsApp avec notre équipe. Contactez-nous pour planifier une session.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Le véhicule peut-il être conduit avant l'exportation ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Oui, le véhicule reste immatriculé en France et peut être conduit librement jusqu'à son export. Une fois le dossier d'exportation déclenché, il vous sera remis avec des plaques d'exportation provisoires (WW ou TT) valables pour le transit.</p>
+            <p><strong>Attention :</strong> pour les véhicules exportés avec un CCR ou Passeport, le kilométrage au moment de l'export ne doit pas dépasser les limites réglementaires.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- DOUANE -->
+      <section class="faq-section" id="douane">
+        <h2 class="faq-section-title bc">Douane & taxes</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Y a-t-il des droits de douane à payer en Algérie ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <span class="faq-tag">Algérie</span>
+            <p>Avec un <strong>CCR ou FCR valide</strong>, vous bénéficiez d'une <strong>exonération totale</strong> des droits de douane et de TVA algérienne pour un véhicule neuf ou récent.</p>
+            <p>Avec un <strong>passeport biométrique</strong>, une franchise partielle s'applique. Les taxes résiduelles varient selon la valeur du véhicule et la cylindrée. Notre équipe peut vous fournir une estimation précise avant l'achat.</p>
+            <p>Des frais de dédouanement locaux (frais de port, manutention, scanner) restent à prévoir, généralement entre 500 et 1 500 € selon la destination.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Quelles taxes s'appliquent pour la Tunisie ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <span class="faq-tag">Tunisie</span>
+            <p>Pour les résidents tunisiens à l'étranger (RNT), le régime d'importation temporaire ou définitive s'applique selon la durée de séjour prévue en Tunisie.</p>
+            <p>En cas d'importation définitive avec le statut RNT : exonération des droits de douane sous conditions. Des taxes locales (TVA tunisienne, droits de circulation) restent applicables.</p>
+            <p>Nous travaillons avec des transitaires agréés en Tunisie qui vous assistent dans les démarches de dédouanement local.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Quelles taxes y a-t-il côté France à l'export ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>En France, l'exportation d'un véhicule hors UE permet de récupérer la TVA sur les véhicules neufs (sous conditions et formalités). Nos prix sont indiqués HT (hors taxes).</p>
+            <p>Les formalités douanières françaises (DAE — Document d'Accompagnement Export) sont gérées par nos soins. Le véhicule doit quitter le territoire européen dans un délai réglementaire à partir de la date d'achat.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- FINANCEMENT -->
+      <section class="faq-section" id="financement">
+        <h2 class="faq-section-title bc">Financement</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Proposez-vous des solutions de financement ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Oui, nous travaillons avec des organismes de crédit partenaires qui proposent des solutions de financement adaptées à l'achat export :</p>
+            <ul>
+              <li>Crédit classique sur 12 à 60 mois</li>
+              <li>LOA (Location avec Option d'Achat) — sous conditions</li>
+              <li>Paiement en plusieurs fois sans frais pour certains montants</li>
+            </ul>
+            <p>La demande de financement est soumise à l'accord de l'organisme de crédit. Nous vous conseillons de préparer vos 3 derniers bulletins de salaire, avis d'imposition et justificatif de domicile.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Puis-je payer en plusieurs fois depuis l'Algérie ou la Tunisie ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Le paiement doit être effectué depuis un compte bancaire français ou européen. Les virements depuis l'Algérie ou la Tunisie sont soumis aux réglementations de change locales et peuvent être complexes.</p>
+            <p>Nous acceptons le paiement par <strong>virement bancaire SEPA</strong> ou <strong>chèque de banque</strong>. Un acompte de 20 à 30% est requis à la commande, le solde étant réglé avant l'embarquement.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- LIVRAISON -->
+      <section class="faq-section" id="livraison">
+        <h2 class="faq-section-title bc">Délais & livraison</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Quel est le délai entre l'achat et la réception du véhicule ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Le délai moyen de bout en bout est de <strong>4 à 8 semaines</strong> selon la destination :</p>
+            <ul>
+              <li><strong>Algérie (Oran / Alger) :</strong> 3 à 5 semaines après embarquement</li>
+              <li><strong>Tunisie (Tunis / Sfax) :</strong> 2 à 4 semaines après embarquement</li>
+            </ul>
+            <p>Le délai inclut : préparation du dossier (1-2 sem.), transport maritime (1-2 sem.), et formalités douanières au port d'arrivée (1-2 sem.).</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Depuis quel port part le véhicule ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Selon la destination et la compagnie maritime, l'embarquement s'effectue depuis :</p>
+            <ul>
+              <li><strong>Port de Marseille</strong> — pour l'Algérie et la Tunisie (liaisons fréquentes)</li>
+              <li><strong>Port du Havre</strong> — selon disponibilité et tarification</li>
+            </ul>
+            <p>Nous gérons le transport jusqu'au port d'embarquement. Vous recevrez le numéro de conteneur et pouvez suivre votre véhicule en temps réel via le site de la compagnie maritime.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- VÉHICULES -->
+      <section class="faq-section" id="vehicules">
+        <h2 class="faq-section-title bc">Choix du véhicule</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">Y a-t-il une limite d'âge ou de kilométrage pour l'export ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Cela dépend du document d'exportation et de la destination :</p>
+            <ul>
+              <li><strong>CCR Algérie :</strong> véhicule de moins de 3 ans à la date de la demande CCR</li>
+              <li><strong>Passeport biométrique :</strong> véhicule de moins de 3 ans et moins de 60 000 km</li>
+              <li><strong>FCR :</strong> conditions similaires au CCR</li>
+              <li><strong>Tunisie RNT :</strong> moins de 3 ans en général</li>
+            </ul>
+            <p>Nous ne vendons que des véhicules conformes aux critères d'export pour votre document. Chaque fiche véhicule précise les documents acceptés.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Puis-je faire une demande de véhicule spécifique non visible dans l'inventaire ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Oui, absolument. Si vous ne trouvez pas le véhicule de vos rêves dans notre inventaire, nous proposons un service de <strong>recherche sur commande</strong>.</p>
+            <p>Précisez-nous : marque, modèle, motorisation, couleur, options souhaitées et budget. Notre équipe sourcing recherche pour vous dans notre réseau de plus de 200 concessionnaires partenaires en France.</p>
+            <p>Contactez-nous via WhatsApp ou le formulaire de contact pour lancer une recherche personnalisée.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="faq-cta">
+        <div class="faq-cta-text">
+          <strong>Vous n'avez pas trouvé votre réponse ?</strong>
+          <span>Notre équipe répond en moins de 24h, 6j/7.</span>
+        </div>
+        <div class="faq-cta-btns">
+          <a href="https://wa.me/33670512030" target="_blank" rel="noopener" class="btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="contact.html" class="btn-white">Formulaire de contact</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></div><p class="footer-tagline">Spécialiste de l'export automobile vers l'Algérie et la Tunisie. Simple, transparent, efficace.</p><div class="footer-social"><a href="#" class="social-btn" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a><a href="#" class="social-btn" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a></div></div>
+      <div><p class="footer-col-title">Navigation</p><ul class="footer-links"><li><a href="inventaire.html?type=neuf">Véhicules neufs</a></li><li><a href="inventaire.html?type=occasion">Véhicules d'occasion</a></li><li><a href="a-propos.html">Nos concessions</a></li><li><a href="contact.html">Nous contacter</a></li></ul></div>
+      <div><p class="footer-col-title">Ressources</p><ul class="footer-links"><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html#documents">Documents requis</a></li><li><a href="faq.html#douane">Douane & taxes</a></li></ul></div>
+      <div><p class="footer-col-title">Contact</p><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>45 av. Georges Clemenceau<br>92000 Nanterre (92)</span></div><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>06 70 51 20 30</span></div></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">© 2026 Export Car 213. Tous droits réservés.</p><div class="footer-legal"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/33670512030" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script>
+  const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');mm.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open');document.body.style.overflow=''}));
+
+  // Accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-question').addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-answer').style.maxHeight='0'});
+      if(!isOpen){item.classList.add('open');item.querySelector('.faq-answer').style.maxHeight=item.querySelector('.faq-answer-inner').scrollHeight+'px'}
+    });
+  });
+
+  // Category links
+  function scrollTo(id){
+    document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+    document.querySelectorAll('.faq-cat-link').forEach(l=>l.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+
+  // Active category on scroll
+  const sections=document.querySelectorAll('.faq-section');
+  const catLinks=document.querySelectorAll('.faq-cat-link');
+  window.addEventListener('scroll',()=>{
+    let current='';
+    sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)current=s.id});
+    catLinks.forEach((l,i)=>{const ids=['documents','procedure','douane','financement','livraison','vehicules'];l.classList.toggle('active',ids[i]===current)});
+  },{passive:true});
+
+  // Search
+  function searchFaq(){
+    const q=document.getElementById('searchInput').value.toLowerCase().trim();
+    if(!q)return;
+    const items=document.querySelectorAll('.faq-item');
+    items.forEach(item=>{
+      const text=item.textContent.toLowerCase();
+      item.style.display=text.includes(q)?'block':'none';
+    });
+  }
+  document.getElementById('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchFaq()});
+</script>
+</body>
+</html>

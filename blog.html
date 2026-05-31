@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog Export Car 213 — Guides pratiques sur l'export automobile vers l'Algérie et la Tunisie. CCR, douane, financement, procédures d'import.">
+  <title>Blog — Export Car 213</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--red:#C0392B;--red-dk:#a12e22;--green:#27AE60;--green-dk:#1e9450;--black:#1A1A1A;--white:#fff;--off-white:#F5F5F5;--gray:#8A8A8A;--gray-lt:#E8E8E8;--nav-h:72px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7;color:var(--black);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{cursor:pointer;font-family:inherit;border:none;background:none}
+    .container{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+    .bc{font-family:'Barlow Condensed',sans-serif}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;border-radius:3px;transition:background .25s}
+    .btn-primary:hover{background:var(--red-dk)}
+
+    /* NAV */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .nav-logo img{height:56px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--black);position:relative;transition:color .2s}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--green);transition:width .25s}
+    .nav-links a:hover{color:var(--green)} .nav-links a:hover::after{width:100%}
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-burger{display:none;flex-direction:column;gap:5px;padding:8px}
+    .nav-burger span{display:block;width:24px;height:2px;background:var(--black);border-radius:2px;transition:transform .3s,opacity .3s}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-burger.open span:nth-child(2){opacity:0}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-mobile{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:#fff;z-index:999;flex-direction:column;padding:32px 24px;gap:4px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+    .nav-mobile.open{display:flex;transform:translateX(0)}
+    .nav-mobile a{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;text-transform:uppercase;color:var(--black);padding:14px 0;border-bottom:1px solid var(--gray-lt);transition:color .2s}
+    .nav-mobile a:hover{color:var(--green)}
+
+    /* PAGE HEADER */
+    .page-header{padding-top:calc(var(--nav-h)+56px);padding-bottom:56px;background:var(--black);color:#fff}
+    .label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.01em;margin-bottom:16px}
+    .page-title em{font-style:italic;color:var(--red)}
+    .page-subtitle{font-size:17px;color:rgba(255,255,255,.6);max-width:520px}
+
+    /* CATEGORIES */
+    .cat-bar{padding:20px 0;border-bottom:1px solid var(--gray-lt);overflow-x:auto;scrollbar-width:none}
+    .cat-bar::-webkit-scrollbar{display:none}
+    .cat-bar-inner{display:flex;gap:8px;white-space:nowrap}
+    .cat-chip{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--gray-lt);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+    .cat-chip:hover,.cat-chip.active{background:var(--black);border-color:var(--black);color:#fff}
+
+    /* BLOG LAYOUT */
+    .blog-section{padding:56px 0 96px}
+    .blog-layout{display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start}
+
+    /* FEATURED POST */
+    .featured-post{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--off-white);margin-bottom:48px;cursor:pointer;transition:transform .25s,box-shadow .25s}
+    .featured-post:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+    .featured-img{aspect-ratio:4/3;overflow:hidden;background:var(--gray-lt)}
+    .featured-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .featured-post:hover .featured-img img{transform:scale(1.03)}
+    .featured-body{padding:40px;display:flex;flex-direction:column;justify-content:center}
+    .post-cat{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+    .post-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:.01em;color:var(--black);margin-bottom:14px}
+    .post-excerpt{font-size:15px;color:#555;line-height:1.7;margin-bottom:20px}
+    .post-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--gray)}
+    .post-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--gray-lt)}
+    .post-read-more{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--black);border-bottom:2px solid var(--black);padding-bottom:2px;transition:color .2s,border-color .2s;margin-top:4px}
+    .post-read-more:hover{color:var(--green);border-color:var(--green)}
+
+    /* POST GRID */
+    .post-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gray-lt);border:1px solid var(--gray-lt)}
+    .post-card{background:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s,border-top .15s;border-top:3px solid transparent}
+    .post-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);z-index:1;border-top-color:var(--green)}
+    .post-card-img{aspect-ratio:16/9;overflow:hidden;background:var(--off-white)}
+    .post-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .post-card:hover .post-card-img img{transform:scale(1.04)}
+    .post-card-body{padding:20px 24px 24px}
+    .post-card-body .post-cat{margin-bottom:8px}
+    .post-card-body .post-title{font-size:clamp(18px,2vw,22px);margin-bottom:10px}
+    .post-card-body .post-excerpt{font-size:14px;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .post-card-body .post-meta{font-size:12px}
+
+    /* SIDEBAR */
+    .blog-sidebar{position:sticky;top:calc(var(--nav-h)+24px)}
+    .sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--gray-lt)}
+    .sidebar-block:last-child{border-bottom:none}
+    .sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--black);margin-bottom:16px}
+    .sidebar-post{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--gray-lt);cursor:pointer;transition:opacity .2s}
+    .sidebar-post:hover{opacity:.75}
+    .sidebar-post:last-child{border-bottom:none}
+    .sidebar-post-img{width:72px;height:54px;flex-shrink:0;overflow:hidden;background:var(--off-white)}
+    .sidebar-post-img img{width:100%;height:100%;object-fit:cover}
+    .sidebar-post-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;line-height:1.2;color:var(--black);margin-bottom:4px}
+    .sidebar-post-date{font-size:12px;color:var(--gray)}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;background:var(--off-white);color:var(--gray);cursor:pointer;transition:background .2s,color .2s}
+    .tag:hover{background:var(--black);color:#fff}
+    .newsletter-form{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+    .newsletter-input{border:1px solid var(--gray-lt);padding:11px 14px;font-family:'Inter',sans-serif;font-size:15px;color:var(--black);outline:none;transition:border-color .2s}
+    .newsletter-input:focus{border-color:var(--green)}
+    .newsletter-btn{background:var(--black);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px;cursor:pointer;transition:background .2s;border:none}
+    .newsletter-btn:hover{background:var(--green)}
+
+    /* FOOTER */
+    #footer{background:var(--black);color:#fff;padding:72px 0 40px}
+    .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .footer-logo img{height:52px;filter:brightness(0) invert(1);margin-bottom:20px}
+    .footer-tagline{font-size:16px;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:24px}
+    .footer-social{display:flex;gap:12px}
+    .social-btn{width:36px;height:36px;border-radius:3px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:border-color .2s,color .2s}
+    .social-btn:hover{border-color:#fff;color:#fff}
+    .footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .footer-links a{font-size:16px;color:rgba(255,255,255,.6);transition:color .2s}
+    .footer-links a:hover{color:#fff}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:16px;color:rgba(255,255,255,.6)}
+    .footer-contact-item svg{flex-shrink:0;margin-top:2px;color:var(--red)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;gap:16px;flex-wrap:wrap}
+    .footer-copy{font-size:15px;color:rgba(255,255,255,.3)}
+    .footer-legal{display:flex;gap:24px}
+    .footer-legal a{font-size:15px;color:rgba(255,255,255,.3);transition:color .2s}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:waPulse 3s ease-in-out infinite;transition:transform .2s}
+    .wa-float:hover{transform:scale(1.1);animation-play-state:paused} .wa-float svg{color:#fff}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}}
+
+    @media(max-width:1024px){.blog-layout{grid-template-columns:1fr}.blog-sidebar{position:static}.featured-post{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:40px}}
+    @media(max-width:768px){:root{--nav-h:60px}.nav-links,.nav-right .btn-primary{display:none}.nav-burger{display:flex}.post-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;gap:32px}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></a>
+    <ul class="nav-links">
+      <li><a href="inventaire.html?type=neuf">Véhicules Neufs</a></li>
+      <li><a href="inventaire.html?type=occasion">Véhicules Occasion</a></li>
+      <li><a href="a-propos.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Nous Contacter</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-primary">Nous contacter</a>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="inventaire.html?type=neuf">Véhicules Neufs</a>
+  <a href="inventaire.html?type=occasion">Véhicules Occasion</a>
+  <a href="a-propos.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Nous Contacter</a>
+  <a href="contact.html" class="btn-primary" style="margin-top:12px">Prendre RDV</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <p class="label">Export Car 213</p>
+    <h1 class="page-title bc">Le guide<br><em>de l'export auto</em></h1>
+    <p class="page-subtitle">Conseils pratiques, procédures, actualités — tout ce que la diaspora algérienne et tunisienne en France doit savoir.</p>
+  </div>
+</div>
+
+<div class="cat-bar">
+  <div class="container">
+    <div class="cat-bar-inner">
+      <span class="cat-chip active" onclick="filterCat('all',this)">Tous les articles</span>
+      <span class="cat-chip" onclick="filterCat('ccr',this)">CCR & Documents</span>
+      <span class="cat-chip" onclick="filterCat('douane',this)">Douane & Taxes</span>
+      <span class="cat-chip" onclick="filterCat('financement',this)">Financement</span>
+      <span class="cat-chip" onclick="filterCat('algerie',this)">Export Algérie</span>
+      <span class="cat-chip" onclick="filterCat('tunisie',this)">Export Tunisie</span>
+      <span class="cat-chip" onclick="filterCat('conseils',this)">Conseils achat</span>
+    </div>
+  </div>
+</div>
+
+<div class="blog-section">
+  <div class="container">
+    <div class="blog-layout">
+      <div>
+        <!-- FEATURED -->
+        <div class="featured-post" data-cat="ccr">
+          <div class="featured-img"><img src="asstes/3.png" alt="Guide CCR 2026" loading="lazy"></div>
+          <div class="featured-body">
+            <p class="post-cat">CCR & Documents</p>
+            <h2 class="post-title bc">Guide complet du CCR 2026 — Comment exporter votre voiture en Algérie</h2>
+            <p class="post-excerpt">Tout ce que vous devez savoir sur le Certificat de Changement de Résidence : qui peut en bénéficier, comment l'obtenir, quels véhicules sont éligibles et comment éviter les erreurs fréquentes.</p>
+            <div class="post-meta">
+              <span>15 mai 2026</span><span class="dot"></span>
+              <span>8 min de lecture</span>
+            </div>
+            <a href="#" class="post-read-more" style="margin-top:16px">Lire l'article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="post-grid" id="postGrid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="blog-sidebar">
+        <div class="sidebar-block">
+          <h3 class="sidebar-title bc">Articles populaires</h3>
+          <div class="sidebar-post"><div class="sidebar-post-img"><img src="asstes/20.png" alt="" loading="lazy"></div><div><p class="sidebar-post-title bc">Passeport biométrique — ce qui change en 2026</p><p class="sidebar-post-date">12 mai 2026</p></div></div>
+          <div class="sidebar-post"><div class="sidebar-post-img"><img src="asstes/35.png" alt="" loading="lazy"></div><div><p class="sidebar-post-title bc">Tunisie RNT : mode d'emploi complet</p><p class="sidebar-post-date">8 mai 2026</p></div></div>
+          <div class="sidebar-post"><div class="sidebar-post-img"><img src="asstes/30.png" alt="" loading="lazy"></div><div><p class="sidebar-post-title bc">Quelles voitures choisir pour l'export Algérie ?</p><p class="sidebar-post-date">1 mai 2026</p></div></div>
+          <div class="sidebar-post"><div class="sidebar-post-img"><img src="asstes/12.png" alt="" loading="lazy"></div><div><p class="sidebar-post-title bc">Les 5 erreurs à éviter lors d'un export</p><p class="sidebar-post-date">24 avril 2026</p></div></div>
+        </div>
+
+        <div class="sidebar-block">
+          <h3 class="sidebar-title bc">Thèmes</h3>
+          <div class="tag-cloud">
+            <span class="tag">CCR</span><span class="tag">Passeport</span><span class="tag">FCR</span><span class="tag">Douane</span><span class="tag">Algérie</span><span class="tag">Tunisie</span><span class="tag">Financement</span><span class="tag">Neuf</span><span class="tag">Occasion</span><span class="tag">Renault</span><span class="tag">VW</span><span class="tag">Cupra</span>
+          </div>
+        </div>
+
+        <div class="sidebar-block">
+          <h3 class="sidebar-title bc">Newsletter</h3>
+          <p style="font-size:14px;color:var(--gray);margin-bottom:12px">Recevez nos guides et les nouveautés du stock en avant-première.</p>
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="votre@email.com">
+            <button class="newsletter-btn">S'abonner</button>
+          </div>
+        </div>
+
+        <div class="sidebar-block" style="background:var(--black);padding:24px;border-bottom:none">
+          <h3 class="sidebar-title bc" style="color:#fff">Une question ?</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.6);margin-bottom:16px">Notre équipe répond en direct sur WhatsApp, 6j/7.</p>
+          <a href="https://wa.me/33670512030" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;transition:background .2s">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Écrire sur WhatsApp
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo"><img src="asstes/LOGO.svg" alt="Export Car 213"></div><p class="footer-tagline">Spécialiste de l'export automobile vers l'Algérie et la Tunisie. Simple, transparent, efficace.</p><div class="footer-social"><a href="#" class="social-btn" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a><a href="#" class="social-btn" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a></div></div>
+      <div><p class="footer-col-title">Navigation</p><ul class="footer-links"><li><a href="inventaire.html?type=neuf">Véhicules neufs</a></li><li><a href="inventaire.html?type=occasion">Véhicules d'occasion</a></li><li><a href="a-propos.html">Nos concessions</a></li><li><a href="contact.html">Nous contacter</a></li></ul></div>
+      <div><p class="footer-col-title">Ressources</p><ul class="footer-links"><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html#documents">Documents requis</a></li><li><a href="faq.html#douane">Douane & taxes</a></li></ul></div>
+      <div><p class="footer-col-title">Contact</p><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>45 av. Georges Clemenceau<br>92000 Nanterre (92)</span></div><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>06 70 51 20 30</span></div></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">© 2026 Export Car 213. Tous droits réservés.</p><div class="footer-legal"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/33670512030" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script>
+  const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');mm.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open');document.body.style.overflow=''}));
+
+  const posts=[
+    {img:'20.png',cat:'ccr',catLabel:'CCR & Documents',title:'Passeport biométrique 2026 : nouvelles règles et véhicules éligibles',excerpt:'Depuis janvier 2026, les conditions d\'éligibilité au passeport biométrique ont été actualisées. Voici ce qui change et comment en profiter.',date:'12 mai 2026',read:'6 min'},
+    {img:'35.png',cat:'tunisie',catLabel:'Export Tunisie',title:'Tout savoir sur le régime RNT pour les Tunisiens résidant en France',excerpt:'Le statut RNT (Résident Non-résident en Tunisie) vous permet d\'importer un véhicule avec exonération de droits de douane. Mode d\'emploi complet.',date:'8 mai 2026',read:'7 min'},
+    {img:'30.png',cat:'conseils',catLabel:'Conseils achat',title:'Quelle voiture choisir pour l\'export vers l\'Algérie ? Notre sélection 2026',excerpt:'SUV, berlines, citadines — pas tous les véhicules se valent pour l\'export. Notre équipe vous guide vers les modèles les plus adaptés.',date:'1 mai 2026',read:'5 min'},
+    {img:'12.png',cat:'conseils',catLabel:'Conseils achat',title:'Les 5 erreurs à éviter lors d\'un achat-export',excerpt:'Document expiré, kilométrage limite dépassé, délai d\'embarquement raté... découvrez les pièges les plus fréquents et comment les éviter.',date:'24 avril 2026',read:'4 min'},
+    {img:'1.png',cat:'douane',catLabel:'Douane & Taxes',title:'Calcul des droits de douane en Algérie : simulateur et exemples concrets',excerpt:'Comment calculer exactement ce que vous paierez à la douane algérienne selon votre type de document et la valeur du véhicule.',date:'18 avril 2026',read:'8 min'},
+    {img:'40.png',cat:'financement',catLabel:'Financement',title:'Financer votre véhicule export depuis la France : toutes les options',excerpt:'Crédit classique, LOA, paiement en plusieurs fois — tour d\'horizon complet des solutions de financement disponibles pour un achat export.',date:'10 avril 2026',read:'6 min'},
+    {img:'5.png',cat:'algerie',catLabel:'Export Algérie',title:'FCR : le dispositif méconnu des retraités algériens en France',excerpt:'Le Fonds de Compensation des Retraites permet aux seniors algériens résidant en France d\'importer un véhicule dans des conditions très avantageuses.',date:'5 avril 2026',read:'5 min'},
+    {img:'36.png',cat:'conseils',catLabel:'Conseils achat',title:'Neuf ou occasion pour l\'export ? Les critères pour bien choisir',excerpt:'Entre prix d\'achat, taxes douanières, état général et garanties, le choix entre neuf et occasion mérite réflexion. Notre analyse comparative.',date:'28 mars 2026',read:'6 min'},
+  ];
+
+  function renderPosts(list){
+    const grid=document.getElementById('postGrid');
+    grid.innerHTML='';
+    list.forEach(p=>{
+      const card=document.createElement('article');
+      card.className='post-card';
+      card.dataset.cat=p.cat;
+      card.innerHTML=`<div class="post-card-img"><img src="asstes/${p.img}" alt="${p.title}" loading="lazy"></div><div class="post-card-body"><p class="post-cat">${p.catLabel}</p><h3 class="post-title bc">${p.title}</h3><p class="post-excerpt">${p.excerpt}</p><div class="post-meta"><span>${p.date}</span><span class="dot" style="width:3px;height:3px;border-radius:50%;background:var(--gray-lt);display:inline-block;margin:0 8px"></span><span>${p.read} de lecture</span></div></div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  renderPosts(posts);
+
+  function filterCat(cat,el){
+    document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('active'));
+    el.classList.add('active');
+    const filtered=cat==='all'?posts:posts.filter(p=>p.cat===cat);
+    renderPosts(filtered);
+  }
+</script>
+</body>
+</html>
