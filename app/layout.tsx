@@ -7,6 +7,9 @@ import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
 import CookieBanner from '@/components/CookieBanner'
 import FadeUpObserver from '@/components/FadeUpObserver'
+import LenisProvider from '@/components/LenisProvider'
+import PageTransition from '@/components/PageTransition'
+import QueryProvider from '@/components/QueryProvider'
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
@@ -41,12 +44,17 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${barlowCondensed.variable} ${inter.variable}`}>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFloat />
-        <CookieBanner />
-        <FadeUpObserver />
+        <QueryProvider>
+          <LenisProvider />
+          <Navbar />
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
+          <Footer />
+          <WhatsAppFloat />
+          <CookieBanner />
+          <FadeUpObserver />
+        </QueryProvider>
       </body>
     </html>
   )

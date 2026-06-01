@@ -3,6 +3,7 @@ import Link from 'next/link'
 import vehiclesData from '@/lib/vehicles.json'
 import VehicleGallery from './VehicleGallery'
 import VehicleSpecTabs from './VehicleSpecTabs'
+import VehicleContactModal from '@/components/VehicleContactModal'
 
 interface VehicleData {
   id: number
@@ -94,7 +95,7 @@ export default function VehiclePage({ params }: { params: { id: string } }) {
                   </svg>
                   Demander sur WhatsApp
                 </a>
-                <Link href="/contact" className="btn-outline-dark">Envoyer une demande</Link>
+                <VehicleContactModal brand={v.brand} name={v.name} />
               </div>
             </div>
 

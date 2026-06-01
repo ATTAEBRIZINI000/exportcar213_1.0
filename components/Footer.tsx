@@ -9,7 +9,13 @@ export default function Footer() {
 
           <div>
             <div className="footer-logo">
-              <Image src="/assets/LOGO.svg" alt="Export Car 213" width={140} height={52} />
+              <Image
+                src="/assets/LOGO.svg"
+                alt="Export Car 213"
+                width={184}
+                height={74}
+                style={{ width: 'auto', height: 74 }}
+              />
             </div>
             <p className="footer-tagline">
               Spécialiste de l&apos;export automobile vers l&apos;Algérie et la Tunisie depuis la France. Simple, transparent, efficace.

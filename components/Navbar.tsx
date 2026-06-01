@@ -22,8 +22,15 @@ export default function Navbar() {
     <>
       <nav id="nav">
         <div className="container nav-inner">
-          <Link href="/" className="nav-logo" onClick={close}>
-            <Image src="/assets/LOGO.svg" alt="Export Car 213" width={140} height={56} priority />
+          <Link href="/" className="nav-logo" onClick={close} style={{ marginLeft: 28 }}>
+            <Image
+              src="/assets/LOGO.svg"
+              alt="Export Car 213"
+              width={196}
+              height={80}
+              priority
+              style={{ width: 'auto', height: 80 }}
+            />
           </Link>
 
           <ul className="nav-links">
@@ -35,7 +42,7 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-right">
-            <Link href="/contact" className="btn-primary">Nous contacter</Link>
+            <Link href="/contact" className="btn-primary">Prendre RDV</Link>
             <button
               className={`nav-burger${open ? ' open' : ''}`}
               id="burger"

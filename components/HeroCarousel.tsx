@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import gsap from 'gsap'
 
 const slides = [
   { src: '/assets/40.png', alt: 'Cupra Formentor — Export Car 213' },
@@ -17,21 +18,19 @@ const slides = [
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0)
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const timerRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
-  const goTo = (n: number) => {
-    setCurrent((n + slides.length) % slides.length)
-  }
-
+  /* ── Carousel timer ── */
   const start = () => {
     timerRef.current = setInterval(() => {
       setCurrent(prev => (prev + 1) % slides.length)
     }, 3500)
   }
-
   const stop = () => {
     if (timerRef.current) clearInterval(timerRef.current)
   }
+  const goTo = (n: number) => setCurrent((n + slides.length) % slides.length)
 
   useEffect(() => {
     start()
@@ -41,6 +40,44 @@ export default function HeroCarousel() {
       stop()
       document.removeEventListener('visibilitychange', onVisibility)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  /* ── GSAP entrance animation ── */
+  useEffect(() => {
+    if (!contentRef.current) return
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+      tl.fromTo('.hero-eyebrow',
+        { opacity: 0, x: -24 },
+        { opacity: 1, x: 0, duration: 0.6 },
+        0.3
+      )
+      .fromTo('.hero-title',
+        { opacity: 0, y: 40, skewY: 2 },
+        { opacity: 1, y: 0, skewY: 0, duration: 0.75 },
+        0.55
+      )
+      .fromTo('.hero-subtitle',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        0.85
+      )
+      .fromTo('.hero-ctas',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        1.05
+      )
+      .fromTo('.hero-scroll',
+        { opacity: 0 },
+        { opacity: 0.55, duration: 0.5 },
+        1.3
+      )
+    }, contentRef)
+
+    return () => ctx.revert()
   }, [])
 
   return (
@@ -54,26 +91,27 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      <div className="hero-overlay"></div>
+      <div className="hero-overlay" />
 
-      <div className="hero-content">
+      <div className="hero-content" ref={contentRef}>
         <div className="container">
-          <div className="hero-eyebrow">
-            <div className="hero-eyebrow-line"></div>
+          <div className="hero-eyebrow" style={{ opacity: 0 }}>
+            <div className="hero-eyebrow-line" />
             <span>Export Algérie &amp; Tunisie · Depuis 2015</span>
           </div>
 
-          <h1 className="hero-title bc">
-            Votre voiture.<br/>
-            <em>Votre pays.</em><br/>
+          <h1 className="hero-title bc" style={{ opacity: 0 }}>
+            Votre voiture.<br />
+            <em>Votre pays.</em><br />
             Sans compromis.
           </h1>
 
-          <p className="hero-subtitle">
-            Spécialiste de l&apos;export automobile vers l&apos;Algérie et la Tunisie. 500+ véhicules neufs et d&apos;occasion. Deux concessions en France — Nanterre et Caen.
+          <p className="hero-subtitle" style={{ opacity: 0 }}>
+            Spécialiste de l&apos;export automobile vers l&apos;Algérie et la Tunisie.
+            500+ véhicules neufs et d&apos;occasion. Deux concessions en France — Nanterre et Caen.
           </p>
 
-          <div className="hero-ctas">
+          <div className="hero-ctas" style={{ opacity: 0 }}>
             <Link href="/inventaire?type=neuf" className="btn-primary">
               Export Véhicule Neuf
             </Link>
@@ -95,9 +133,9 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      <div className="hero-scroll">
+      <div className="hero-scroll" style={{ opacity: 0 }}>
         <span>Scroll</span>
-        <div className="hero-scroll-line"></div>
+        <div className="hero-scroll-line" />
       </div>
     </section>
   )
