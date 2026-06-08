@@ -107,8 +107,8 @@ export default function AProposPage() {
       {/* SHOWROOMS */}
       <section className="showrooms-section">
         <div className="container">
-          <p className="section-label" style={{ color: 'rgba(255,255,255,0.4)' }}>Nos showrooms</p>
-          <h2 className="section-title bc" style={{ color: '#fff' }}>Deux concessions<br/><em>à votre service</em></h2>
+          <p className="section-label">Nos showrooms</p>
+          <h2 className="section-title bc">Deux concessions<br/><em>à votre service</em></h2>
           <div className="showrooms-grid">
             {[
               { num: '92', city: 'Paris', dept: 'Nanterre · Hauts-de-Seine (92)', addr: '45 av. Georges Clemenceau, 92000 Nanterre', tel: '06 70 51 20 30', mapsUrl: 'https://maps.google.com/?q=45+Georges+Clemenceau+92000+Nanterre' },

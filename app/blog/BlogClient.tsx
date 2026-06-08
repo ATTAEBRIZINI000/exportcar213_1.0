@@ -32,9 +32,9 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
       {/* PAGE HEADER */}
       <div className="page-header-dark">
         <div className="container">
-          <p className="label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '12px' }}>Export Car 213</p>
-          <h1 className="page-title bc" style={{ color: '#fff', marginBottom: '16px' }}>Le guide<br/><em>de l&apos;export auto</em></h1>
-          <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.6)', maxWidth: '520px' }}>
+          <p className="label" style={{ marginBottom: '12px' }}>Export Car 213</p>
+          <h1 className="page-title bc" style={{ marginBottom: '16px' }}>Le guide<br/><em>de l&apos;export auto</em></h1>
+          <p style={{ fontSize: '17px', color: '#1A5C2A', maxWidth: '520px' }}>
             Conseils pratiques, procédures, actualités — tout ce que la diaspora algérienne et tunisienne en France doit savoir.
           </p>
         </div>

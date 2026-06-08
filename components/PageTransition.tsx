@@ -11,7 +11,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
   return (
     <motion.div
       variants={variants}
-      initial="hidden"
+      initial={false}
       animate="visible"
       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
     >

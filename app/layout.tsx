@@ -10,6 +10,7 @@ import FadeUpObserver from '@/components/FadeUpObserver'
 import LenisProvider from '@/components/LenisProvider'
 import PageTransition from '@/components/PageTransition'
 import QueryProvider from '@/components/QueryProvider'
+import LoadingScreen from '@/components/LoadingScreen'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,10 +38,11 @@ export default function RootLayout({
     <html lang="fr" className={inter.variable}>
       <body>
         <QueryProvider>
+          <LoadingScreen />
           <LenisProvider />
           <Navbar />
           <PageTransition>
-            <main>{children}</main>
+            <main style={{ paddingTop: 'var(--nav-h)' }}>{children}</main>
           </PageTransition>
           <Footer />
           <WhatsAppFloat />

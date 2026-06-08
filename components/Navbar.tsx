@@ -34,10 +34,10 @@ export default function Navbar() {
             <Image
               src="/assets/LOGO.svg"
               alt="Export Car 213"
-              width={160}
-              height={64}
+              width={200}
+              height={86}
               priority
-              style={{ width: 'auto', height: 64 }}
+              style={{ width: 'auto', height: 'var(--logo-h)' }}
             />
           </Link>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-right">
-            <Link href="/contact" className="btn-primary">Prendre RDV</Link>
+            <Link href="/rendez-vous" className="btn-primary">Prendre RDV</Link>
             <button
               className={`nav-burger${open ? ' open' : ''}`}
               id="burger"
@@ -71,7 +71,7 @@ export default function Navbar() {
         <Link href="/a-propos" onClick={close}>Services</Link>
         <Link href="/blog" onClick={close}>Blog</Link>
         <Link href="/contact" onClick={close}>Contact</Link>
-        <Link href="/contact" className="btn-primary" style={{ marginTop: 16 }} onClick={close}>
+        <Link href="/rendez-vous" className="btn-primary" style={{ marginTop: 16 }} onClick={close}>
           Prendre RDV
         </Link>
       </div>

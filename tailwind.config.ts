@@ -9,25 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg:      '#06060A',
-        'bg-2':  '#0D1117',
-        'bg-3':  '#131B23',
-        accent:  '#3B82F6',
-        price:   '#34D399',
+        bg:      '#F8F6F3',
+        'bg-2':  '#FFFFFF',
+        'bg-3':  '#F0EDEA',
+        accent:  '#CC0000',
+        price:   '#CC0000',
+        // New exportcar design tokens
+        'exportcar-red':                '#CC0000',
+        'exportcar-red-hover':          '#AA0000',
+        'exportcar-green':              '#1A5C2A',
+        'exportcar-bg':                 '#F8F6F3',
+        'exportcar-surface':            '#FFFFFF',
+        'exportcar-surface-secondary':  '#F0EDEA',
+        'exportcar-border':             '#E5E1DC',
+        'exportcar-text':               '#1A1A1A',
+        'exportcar-text-secondary':     '#6B7280',
         // Legacy
         red: {
-          DEFAULT: '#3B82F6',
-          dk: '#2563EB',
+          DEFAULT: '#CC0000',
+          dk: '#AA0000',
         },
         green: {
-          DEFAULT: '#34D399',
-          dk: '#10B981',
+          DEFAULT: '#1A5C2A',
+          dk: '#155224',
         },
-        black: '#06060A',
-        'off-white': '#0D1117',
+        black: '#1A1A1A',
+        'off-white': '#F8F6F3',
         gray: {
-          DEFAULT: 'rgba(240,244,255,0.45)',
-          lt: 'rgba(255,255,255,0.07)',
+          DEFAULT: 'rgba(26,26,26,0.45)',
+          lt: 'rgba(0,0,0,0.06)',
         },
       },
       fontFamily: {

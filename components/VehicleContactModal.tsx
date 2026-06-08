@@ -101,7 +101,7 @@ export default function VehicleContactModal({ brand, name }: Props) {
                   Demande de renseignements
                 </Dialog.Title>
 
-                <Dialog.Description style={{ fontSize: 14, color: '#8A8A8A', marginBottom: 28 }}>
+                <Dialog.Description style={{ fontSize: 14, color: '#1A5C2A', marginBottom: 28 }}>
                   {brand} {name} — réponse garantie sous 24h.
                 </Dialog.Description>
 
@@ -121,7 +121,7 @@ export default function VehicleContactModal({ brand, name }: Props) {
                     <p style={{ fontFamily: 'var(--font-barlow, sans-serif)', fontSize: 20, fontWeight: 800, textTransform: 'uppercase', color: '#1A1A1A' }}>
                       Message envoyé !
                     </p>
-                    <p style={{ fontSize: 14, color: '#8A8A8A' }}>
+                    <p style={{ fontSize: 14, color: '#1A5C2A' }}>
                       Notre équipe vous répondra dans les 24h ouvrées.
                     </p>
                     <button

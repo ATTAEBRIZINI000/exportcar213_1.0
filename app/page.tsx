@@ -5,6 +5,7 @@ import VehicleGrid from '@/components/VehicleGrid'
 import FilteredCarousel from '@/components/FilteredCarousel'
 import StatsBand from '@/components/StatsBand'
 import ReviewsTrack from '@/components/ReviewsTrack'
+import BrandLogosStrip from '@/components/BrandLogosStrip'
 import vehiclesData from '@/lib/vehicles.json'
 
 export const metadata = {
@@ -19,12 +20,16 @@ export default function Home() {
 
       {/* ═══ VEHICLES GRID ═══════════════════════════════════════ */}
       <VehicleGrid vehicles={vehiclesData} />
+      <BrandLogosStrip />
 
       {/* ═══ STATS ═══════════════════════════════════════════════ */}
       <StatsBand />
 
       {/* ═══ FILTERED CAROUSEL ════════════════════════════════════ */}
       <FilteredCarousel vehicles={vehiclesData} />
+
+      {/* ═══ BRAND LOGOS ══════════════════════════════════════════ */}
+      <BrandLogosStrip />
 
       {/* ═══ CONCESSIONS ══════════════════════════════════════════ */}
       <section id="concessions">
@@ -46,7 +51,7 @@ export default function Home() {
                 <div className="concession-hour-row"><span className="day">Dimanche</span><span className="hours">Sur rendez-vous</span></div>
               </div>
               <div className="concession-actions">
-                <Link href="/contact" className="btn-primary">Prendre rendez-vous</Link>
+                <Link href="/rendez-vous" className="btn-primary">Prendre rendez-vous</Link>
                 <a href="https://maps.google.com/?q=45+avenue+Georges+Clemenceau+92000+Nanterre" target="_blank" rel="noopener" className="btn-ghost">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
@@ -67,7 +72,7 @@ export default function Home() {
                 <div className="concession-hour-row"><span className="day">Dimanche</span><span className="hours">Sur rendez-vous</span></div>
               </div>
               <div className="concession-actions">
-                <Link href="/contact" className="btn-primary">Prendre rendez-vous</Link>
+                <Link href="/rendez-vous" className="btn-primary">Prendre rendez-vous</Link>
                 <a href="https://maps.google.com/?q=Caen+14000" target="_blank" rel="noopener" className="btn-ghost">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>

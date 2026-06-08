@@ -16,9 +16,20 @@ export default function FadeUpObserver() {
       { threshold: 0.15 }
     )
 
-    const els = document.querySelectorAll('.fade-up')
-    els.forEach(el => io.observe(el))
-    return () => io.disconnect()
+    const observe = () => {
+      document.querySelectorAll('.fade-up:not(.visible)').forEach(el => io.observe(el))
+    }
+
+    // First pass: elements already in DOM
+    observe()
+
+    // Second pass after a tick: picks up client components that hydrate slightly later
+    const t = setTimeout(observe, 120)
+
+    return () => {
+      clearTimeout(t)
+      io.disconnect()
+    }
   }, [])
 
   return null

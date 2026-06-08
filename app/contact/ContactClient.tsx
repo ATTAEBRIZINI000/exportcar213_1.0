@@ -22,9 +22,9 @@ export default function ContactClient() {
       {/* PAGE HEADER */}
       <div className="page-header-dark">
         <div className="container">
-          <p className="label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '12px' }}>Export Car 213</p>
-          <h1 className="page-title bc" style={{ color: '#fff' }}>Parlons de<br/><em>votre projet</em></h1>
-          <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.6)', marginTop: '16px', maxWidth: '480px' }}>
+          <p className="label" style={{ marginBottom: '12px' }}>Export Car 213</p>
+          <h1 className="page-title bc">Parlons de<br/><em>votre projet</em></h1>
+          <p style={{ fontSize: '17px', color: '#1A5C2A', marginTop: '16px', maxWidth: '480px' }}>
             Notre équipe est disponible 6j/7 pour répondre à toutes vos questions sur l&apos;export automobile.
           </p>
         </div>
