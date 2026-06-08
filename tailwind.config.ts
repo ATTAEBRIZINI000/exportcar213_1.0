@@ -9,27 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        bg:      '#06060A',
+        'bg-2':  '#0D1117',
+        'bg-3':  '#131B23',
+        accent:  '#3B82F6',
+        price:   '#34D399',
+        // Legacy
         red: {
-          DEFAULT: '#C0392B',
-          dk: '#a12e22',
+          DEFAULT: '#3B82F6',
+          dk: '#2563EB',
         },
         green: {
-          DEFAULT: '#27AE60',
-          dk: '#1e9450',
+          DEFAULT: '#34D399',
+          dk: '#10B981',
         },
-        black: '#1A1A1A',
-        'off-white': '#F5F5F5',
+        black: '#06060A',
+        'off-white': '#0D1117',
         gray: {
-          DEFAULT: '#8A8A8A',
-          lt: '#E8E8E8',
+          DEFAULT: 'rgba(240,244,255,0.45)',
+          lt: 'rgba(255,255,255,0.07)',
         },
       },
       fontFamily: {
-        barlow: ['"Barlow Condensed"', 'sans-serif'],
         inter: ['Inter', 'system-ui', 'sans-serif'],
+        barlow: ['Inter', 'system-ui', 'sans-serif'],
       },
       height: {
-        nav: '72px',
+        nav: '68px',
         'nav-sm': '60px',
       },
     },

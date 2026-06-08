@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "img": "3.png",
+    "img": "40.png",
     "imgs": ["3.png", "40.png", "5.png", "6.png"],
     "brand": "Cupra",
     "name": "Formentor",
@@ -32,7 +32,7 @@
   },
   {
     "id": 2,
-    "img": "20.png",
+    "img": "36.png",
     "imgs": ["20.png", "36.png", "14.png"],
     "brand": "Volkswagen",
     "name": "Tiguan 7 Places",
@@ -61,7 +61,7 @@
   },
   {
     "id": 3,
-    "img": "35.png",
+    "img": "36.png",
     "imgs": ["35.png", "36.png", "9.png"],
     "brand": "Volkswagen",
     "name": "T-Roc R-Line",
@@ -90,7 +90,7 @@
   },
   {
     "id": 4,
-    "img": "30.png",
+    "img": "14.png",
     "imgs": ["30.png", "12.png", "14.png"],
     "brand": "Renault",
     "name": "Arkana Esprit Alpine",
@@ -119,7 +119,7 @@
   },
   {
     "id": 5,
-    "img": "12.png",
+    "img": "15.png",
     "imgs": ["12.png", "14.png", "15.png"],
     "brand": "Renault",
     "name": "Captur Techno",

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Barlow_Condensed, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import 'leaflet/dist/leaflet.css'
 import Navbar from '@/components/Navbar'
@@ -11,17 +11,9 @@ import LenisProvider from '@/components/LenisProvider'
 import PageTransition from '@/components/PageTransition'
 import QueryProvider from '@/components/QueryProvider'
 
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-barlow',
-  display: 'swap',
-})
-
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-inter',
   display: 'swap',
 })
@@ -42,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className={`${barlowCondensed.variable} ${inter.variable}`}>
+    <html lang="fr" className={inter.variable}>
       <body>
         <QueryProvider>
           <LenisProvider />

@@ -1,18 +1,15 @@
 import Link from 'next/link'
 import HeroCarousel from '@/components/HeroCarousel'
 import MarqueeStrip from '@/components/MarqueeStrip'
-import CarCard from '@/components/CarCard'
-import FilterTabsHome from '@/components/FilterTabsHome'
+import VehicleGrid from '@/components/VehicleGrid'
+import FilteredCarousel from '@/components/FilteredCarousel'
 import StatsBand from '@/components/StatsBand'
 import ReviewsTrack from '@/components/ReviewsTrack'
-import LeafletMap from '@/components/LeafletMap'
 import vehiclesData from '@/lib/vehicles.json'
 
 export const metadata = {
   title: 'Export Car 213 — Spécialiste Export Auto Algérie & Tunisie',
 }
-
-const homeVehicles = vehiclesData.slice(0, 6)
 
 export default function Home() {
   return (
@@ -20,29 +17,14 @@ export default function Home() {
       <HeroCarousel />
       <MarqueeStrip />
 
-      {/* ═══ VEHICLES ════════════════════════════════════════════ */}
-      <section id="vehicles">
-        <div className="container">
-          <div className="section-head fade-up">
-            <p className="label">Notre stock</p>
-            <h2 className="section-title bc">Véhicules <em>disponibles</em></h2>
-          </div>
-
-          <FilterTabsHome vehicles={homeVehicles} />
-
-          <div className="vehicles-cta fade-up">
-            <Link href="/inventaire" className="btn-more">
-              Voir tout l&apos;inventaire
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* ═══ VEHICLES GRID ═══════════════════════════════════════ */}
+      <VehicleGrid vehicles={vehiclesData} />
 
       {/* ═══ STATS ═══════════════════════════════════════════════ */}
       <StatsBand />
+
+      {/* ═══ FILTERED CAROUSEL ════════════════════════════════════ */}
+      <FilteredCarousel vehicles={vehiclesData} />
 
       {/* ═══ CONCESSIONS ══════════════════════════════════════════ */}
       <section id="concessions">
@@ -95,8 +77,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <LeafletMap className="map-container fade-up" />
         </div>
       </section>
 

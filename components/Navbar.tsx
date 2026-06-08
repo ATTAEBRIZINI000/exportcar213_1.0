@@ -1,11 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const close = () => {
     setOpen(false)
@@ -20,16 +28,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav id="nav">
+      <nav id="nav" className={scrolled ? 'scrolled' : ''}>
         <div className="container nav-inner">
-          <Link href="/" className="nav-logo" onClick={close} style={{ marginLeft: 28 }}>
+          <Link href="/" className="nav-logo" onClick={close}>
             <Image
               src="/assets/LOGO.svg"
               alt="Export Car 213"
-              width={196}
-              height={80}
+              width={160}
+              height={64}
               priority
-              style={{ width: 'auto', height: 80 }}
+              style={{ width: 'auto', height: 64 }}
             />
           </Link>
 
@@ -38,7 +46,7 @@ export default function Navbar() {
             <li><Link href="/inventaire?type=occasion">Véhicules Occasion</Link></li>
             <li><Link href="/a-propos">Services</Link></li>
             <li><Link href="/blog">Blog</Link></li>
-            <li><Link href="/contact">Nous Contacter</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
 
           <div className="nav-right">
@@ -62,8 +70,8 @@ export default function Navbar() {
         <Link href="/inventaire?type=occasion" onClick={close}>Véhicules Occasion</Link>
         <Link href="/a-propos" onClick={close}>Services</Link>
         <Link href="/blog" onClick={close}>Blog</Link>
-        <Link href="/contact" onClick={close}>Nous Contacter</Link>
-        <Link href="/contact" className="btn-primary" style={{ marginTop: 12 }} onClick={close}>
+        <Link href="/contact" onClick={close}>Contact</Link>
+        <Link href="/contact" className="btn-primary" style={{ marginTop: 16 }} onClick={close}>
           Prendre RDV
         </Link>
       </div>
